@@ -1,0 +1,3 @@
+#LWP-Cookies-2.0
+Set-Cookie3: ALL="+XRGF6S4QUrOCnn9ipnF4NvYifr/NasZz6SKh8r1EAdi7ompAh2aios5lEUqHFeD5FTUystxJ9jVgxairjibBxmcNZo3NgWCaK9jWmIyG5A="; path="/"; domain="datafeeds.emailsecurity.symantec.com"; secure; expires="2020-07-13 22:08:06Z"; HttpOnly=None; version=0
+Set-Cookie3: AUTH="a2e702c9-44d6-4b2b-6258-ea82fd96f14f$-1626573828774416405_2499452954476937858"; path="/"; domain="datafeeds.emailsecurity.symantec.com"; secure; discard; HttpOnly=None; version=0

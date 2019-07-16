@@ -1,0 +1,13 @@
+
+
+[json]
+app_name = Symantec Cloud
+version = 1.0
+
+[symanteccloud]
+user = USERNAME
+password = PASSWORD
+uri = https://datafeeds.emailsecurity.symantec.com/test
+resetUri = https://datafeeds.emailsecurity.symantec.com/test?reset=2017-07-01T00:00:00Z
+cookiesFilePath = ./cookies
+logsFilePath = ./logs
