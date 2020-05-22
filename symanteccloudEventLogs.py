@@ -61,8 +61,8 @@ class integration(object):
 
 
         # Load the config file
-        with open('NdfConfig.json') as config_file:    
-            self.config = json.load(config_file)
+        #with open('NdfConfig.json') as config_file:    
+            #self.config = json.load(config_file)
         # Load your username from the config file
         self.user = self.ds.config_get('symanteccloud', 'user')
         # Load your password from the config file
@@ -165,7 +165,7 @@ class integration(object):
                         self.ds.writeJSONEvent(newOut)
     
     def run(self):
-        self.ds.log('INFO', 'This is where we would do some work')
+        self.ds.log('INFO', 'Starting Run')
         # Create a cookie container
         cookies = cookielib.LWPCookieJar()
         # Load cookies from file if file exists
@@ -174,11 +174,11 @@ class integration(object):
             # Check if we have the cursor for the feed we are calling
             if ('all' in self.uri and self.cookieExists('ALL', cookies) is False) or ('malware' in self.uri and self.cookieExists('MALWARE', cookies) is False) :
                 # Since we do not have a cursor use the reset uri
-                self.uri = self.config['resetUri']
+                self.uri = self.ds.config_get('symanteccloud', 'resetUri')
         # If cookie file is not on disk and you are not
         # calling the test feed use the reset call to obtain cookie
         elif 'test' not in self.uri:
-            self.uri = self.config['resetUri']
+            self.uri = self.ds.config_get('symanteccloud', 'resetUri')
     
         # Create HTTP handlers
         handlers = [
@@ -207,13 +207,14 @@ class integration(object):
             #fileIo = open(self.logFile,'w')
             #fileIo.write(errorResponse)
             #fileIo.close()
-            self.ds.log('ERROR', errorResponse)
+            self.ds.log('ERROR', str(ex))
         # Catch url errors and write them to the log file. Fails before response so create json formatted error
         except urllib2.URLError, ex:
             errorResponse = '{"error": "%s"}' % ex.reason
             #fileIo = open(logFile,'w')
             #fileIo.write(errorResponse)
             #fileIo.close() 
+            self.ds.log('ERROR', str(ex))
             self.ds.log('ERROR', errorResponse)
         #self.ds.writeCEFEvent()
 
